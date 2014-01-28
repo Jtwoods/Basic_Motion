@@ -25,12 +25,13 @@ public class Basic_Motion_Movement extends Movement{
 	
 	@Override
 	public void update(Kinematic kin, int time) {
-		int x = kin.getX();
-		int z = kin.getZ();
+		int x = kin.getX() + kin.getVelocityX();
+		int z = kin.getZ() + kin.getVelocityZ();
 		//If we reach the XBoundary or ZBoundary or zero.
-		if(x == (XBoundary - 20) || x == 20 ||
-				z == (ZBoundary - 20) || z == 20) {
+		if(x > (XBoundary - 34) || x == 34 ||
+				z > (ZBoundary - 34) || z == 34) {
 			//Turn 90 degrees left.
+			kin.se
 			
 		}
 		

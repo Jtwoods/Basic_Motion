@@ -24,7 +24,7 @@ public class Kinematic {
 	 */
 	private double orientation;
 
-	private class Vector2D {
+	protected class Vector2D {
 
 		/**
 		 * velocityX is the velocity in the x direction.
@@ -83,6 +83,7 @@ public class Kinematic {
 	 * velocity is the vector representation of the velocity of this object.
 	 */
 	private Vector2D velocity;
+	
 
 	/**
 	 * rotationlV is the rotational velocity (radians/units of movement).
@@ -234,7 +235,7 @@ public class Kinematic {
 	 * 
 	 * @return the directional vector.
 	 */
-	public double asVector() {
+	public double asMagnitude() {
 		return Math.sqrt((double) ((x * x) + (z * z)));
 	}
 
@@ -243,21 +244,15 @@ public class Kinematic {
 	 * x and z for the velocity of this object.
 	 * @return the Vector2D representation of the normalized velocity.
 	 */
-	public Vector2D velocityAsVector() {
+	public Vector2D velocityAsNormVector() {
 		
 		int velocityX = velocity.getX();
 		int velocityZ = velocity.getZ();
 		
-		velocityX = (int) (velocityX / asVector());
-		velocityZ = (int) (velocityZ / asVector());
+		velocityX = (int) (velocityX / asMagnitude());
+		velocityZ = (int) (velocityZ / asMagnitude());
 		
 		return new Vector2D(velocityZ, velocityX);
-	}
-
-	//This is broken.
-	public Vector2D normalize(int z, int x) {
-		 x = (int) (x);
-		return velocity;
 	}
 
 }
