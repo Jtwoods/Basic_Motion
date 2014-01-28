@@ -27,54 +27,73 @@ public class Kinematic {
 	protected class Vector2D {
 
 		/**
-		 * velocityX is the velocity in the x direction.
+		 * magnitude is the magnitude of the vector.
 		 */
-		private int x;
-
+		private int magnitude;
+		
 		/**
-		 * celocityY is the velocity in the y direction.
+		 * theta is the direction of the vector in radians.
 		 */
-		private int z;
-
-		public Vector2D(int z, int x) {
-			this.x = x;
-			this.z = z;
+		private double theta;
+		
+		/**
+		 * Vector2D is a vector with magnitude and direction.
+		 * @param magnitude the magnitude of the vector.
+		 * @param theta the direction of the vector in rdians.
+		 */
+		public Vector2D(int magnitude, double theta) {
+			this.magnitude = magnitude;
+			this.theta = theta;
+		}
+		
+		/**
+		 * setMagnitude sets the magnitude of the vector.
+		 * @param mag the new magnitude.
+		 */
+		public void setMagnitude(int mag) {
+			this.magnitude = mag;
+		}
+		
+		/**
+		 * setDirection sets the direction of the vector.
+		 * @param theta
+		 */
+		public void setDirection(double theta) {
+			this.theta = theta;
+		}
+		
+		/**
+		 * getTheta returns the current direction of the vector.
+		 * @return the direction of the vector.
+		 */
+		public double getTheta() {
+			return theta;
+		}
+		
+		/**
+		 * getMagnitude returns the current magnitude of the vector.
+		 * @return the magnitude.
+		 */
+		public int getMagnitude() {
+			return magnitude;
 		}
 
 		/**
-		 * getVelocityX returns the current velocity in the x direction.
+		 * getX returns the current velocity in the x direction.
 		 * 
 		 * @return the x velocity.
 		 */
-		public int getX() {
-			return x;
+		public double getX() {
+			return magnitude*Math.cos(theta);
 		}
 
-		/**
-		 * setX sets the x direction.
-		 * 
-		 * @param x the x direction.
-		 */
-		public void setX(int x) {
-			this.x = x;
-		}
 
 		/**
 		 * getZ returns the current z direction.
 		 * 
 		 * @return the z direction.
-		 */
-		public int getZ() {
-			return z;
-		}
-
-		/**
-		 * setZ sets the z direction.
-		 * 
-		 * @param z the new z direction.
-		 */
-		public void setZ(int z) {
-			this.z = z;
+		 */double getZ() {
+			return  magnitude*Math.sin(theta);
 		}
 
 	}
@@ -99,20 +118,20 @@ public class Kinematic {
 	 *            the initial y position.
 	 * @param orientation
 	 *            the initial orientation.
-	 * @param velocityX
-	 *            the initial velocity in the x direction.
-	 * @param velocityZ
-	 *            the initial velocity in the y direction.
+	 * @param velocity
+	 *            the initial magnitude of the velocity.
+	 * @param direction 
+	 *            the initial direction of the velocity.
 	 * @param rotationalV
 	 *            the initial rotational velocity.
 	 */
-	public Kinematic(int x, int z, double orientation, int velocityX,
-			int velocityZ, double rotationalV) {
+	public Kinematic(int x, int z, double orientation, int velocity,
+			double direction, double rotationalV) {
 		super();
 		this.x = x;
 		this.z = z;
 		this.orientation = orientation;
-		velocity = new Vector2D(velocityZ, velocityX);
+		this.velocity = new Vector2D(velocity, direction);
 		this.rotationalV = rotationalV;
 	}
 
@@ -166,11 +185,11 @@ public class Kinematic {
 	/**
 	 * setOrientation sets the current orientation.
 	 * 
-	 * @param orientation
+	 * @param d
 	 *            the new orientation in radians.
 	 */
-	public void setOrientation(float orientation) {
-		this.orientation = orientation;
+	public void setOrientation(double d) {
+		this.orientation = d;
 	}
 
 	/**
@@ -178,18 +197,26 @@ public class Kinematic {
 	 * 
 	 * @return the x velocity.
 	 */
-	public int getVelocityX() {
+	public double getVelocityX() {
 		return velocity.getX();
 	}
 
 	/**
-	 * setVelocityX sets the velocity in the x direction.
+	 * setMagnitude sets the velocity.
 	 * 
-	 * @param velocityX
-	 *            the velocity in the x direction.
+	 * @param velocity
+	 *            the new magnitude for the velocity.
 	 */
-	public void setVelocityX(int velocityX) {
-		this.velocity.setX(velocityX);
+	public void setMagnitude(int velocity) {
+		this.velocity.setMagnitude(velocity);
+	}
+	
+	/**
+	 * setVelocityDirection sets the direction of the velocity.
+	 * @param direction is the new direction of the velocity.
+	 */
+	public void setVelocityDirection(double direction) {
+		this.velocity.setDirection(direction);
 	}
 
 	/**
@@ -197,19 +224,10 @@ public class Kinematic {
 	 * 
 	 * @return the z velocity.
 	 */
-	public int getVelocityZ() {
+	public double getVelocityZ() {
 		return velocity.getZ();
 	}
 
-	/**
-	 * setVelocityZ sets the velocity in the z direction.
-	 * 
-	 * @param velocityZ
-	 *            the new z velocity.
-	 */
-	public void setVelocityZ(int velocityZ) {
-		this.velocity.setZ(velocityZ);
-	}
 
 	/**
 	 * getRotationalV returns the current rotational velocity.
@@ -226,33 +244,16 @@ public class Kinematic {
 	 * @param rotationalV
 	 *            the new rotational velocity.
 	 */
-	public void setRotationalV(float rotationalV) {
+	public void setRotationalV(double rotationalV) {
 		this.rotationalV = rotationalV;
 	}
-
+	
 	/**
-	 * asVector returns the current heading as a vector.
-	 * 
-	 * @return the directional vector.
+	 * getVelocityDirection returns the angle created by the velocity vectors.
+	 * @return the angle created by the velocity vectors.
 	 */
-	public double asMagnitude() {
-		return Math.sqrt((double) ((x * x) + (z * z)));
-	}
-
-	/**
-	 * returns a Vector2D representation that is the normalized 
-	 * x and z for the velocity of this object.
-	 * @return the Vector2D representation of the normalized velocity.
-	 */
-	public Vector2D velocityAsNormVector() {
-		
-		int velocityX = velocity.getX();
-		int velocityZ = velocity.getZ();
-		
-		velocityX = (int) (velocityX / asMagnitude());
-		velocityZ = (int) (velocityZ / asMagnitude());
-		
-		return new Vector2D(velocityZ, velocityX);
+	public double getVelocityDirection() {
+		return velocity.getTheta();
 	}
 
 }

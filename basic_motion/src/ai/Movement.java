@@ -18,6 +18,6 @@ public abstract class Movement {
 	 * @param time the elapsed time since the previous 
 	 * update.
 	 */
-	public abstract void update(Kinematic kin, int time);
+	public abstract void update(Kinematic kin, double time);
 	
 }

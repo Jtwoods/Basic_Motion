@@ -12,15 +12,16 @@ import structure.Skin;
  */
 public class Turtle implements Skin{
 	
+	
 	/**
 	 * Point is used to mark the points of a triangle.
 	 * @author James Woods
 	 *
 	 */
 	private class Point {
-		//x and y are the coordinates for the point.
+		//z and x are the coordinates for the point.
+		protected int z;
 		protected int x;
-		protected int y;
 	}
 
 	/**
@@ -51,10 +52,7 @@ public class Turtle implements Skin{
 	 */
 	private static final double TWO_PI = Math.PI * 2;
 	
-	//x is the x coordinate of the Turtle. 
-	private int x;
-	//y is the y coordinate of the Turtle.
-	private int y;
+	private Kinematic kin;
 	
 	/**
 	 * parent is the PApplet that will render the turtle
@@ -82,10 +80,8 @@ public class Turtle implements Skin{
 	public Turtle(PApplet p) {
 		parent = p;
 		
-		 x = 0;
-		 y = 0;
-		 
-		 setTheta(0);
+		kin = new Kinematic(0,0,0.0,0,0,0.0);
+		setTheta(0);
 		
 		a = new Point();
 		b = new Point();
@@ -93,22 +89,20 @@ public class Turtle implements Skin{
 		
 	}
 	
-	/**
-	 * setLocation sets the y and x coordinates for the turtle.
-	 * @param y the y coordinate.
-	 * @param x the x coordinate.
-	 */
-	public void setLocation(int y, int x) {
-		this.x = x;
-		this.y = y;
-	}
 	
+	private void setTheta(double i) {
+		theta = i;
+	}
+
+
 	/**
 	 * setAngle sets the directional angle of the Turtle's head.
 	 * @param theta the directional angle that the head is to be set to.
 	 */
 	public void setAngle(double theta) {
 		
+		int x = kin.getX();
+		int z = kin.getZ();
 		//Limit the size of theta.
 		if(theta > TWO_PI)
 				theta -= TWO_PI;
@@ -116,55 +110,30 @@ public class Turtle implements Skin{
 		
 		
 		//set the position of the head point.
-		a.x = (int)((HEAD_DISTANCE *  Math.sin(this.theta)) + x);
-		a.y = (int)((HEAD_DISTANCE *  Math.cos(this.theta)) + y);
+		a.z = (int)((HEAD_DISTANCE *  Math.sin(this.theta)) + z);
+		a.x = (int)((HEAD_DISTANCE *  Math.cos(this.theta)) + x);
 	
 		//set the position of the left Point.
-		b.x = (int)((RADIUS *  Math.sin(this.theta + PI_THIRDS)) + x);
-		b.y = (int)((RADIUS *  Math.cos(this.theta + PI_THIRDS)) + y);
+		b.z = (int)((RADIUS *  Math.sin(this.theta + PI_THIRDS)) + z);
+		b.x = (int)((RADIUS *  Math.cos(this.theta + PI_THIRDS)) + x);
 		
 		//set the position of the right Point.
-		c.x = (int)((RADIUS *  Math.sin(this.theta - PI_THIRDS)) + x);
-		c.y = (int)((RADIUS *  Math.cos(this.theta - PI_THIRDS)) + y);
+		c.z = (int)((RADIUS *  Math.sin(this.theta - PI_THIRDS)) + z);
+		c.x = (int)((RADIUS *  Math.cos(this.theta - PI_THIRDS)) + x);
 		
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public double getTheta() {
-		return theta;
-	}
-
-	public void setTheta(double theta) {
-		this.theta = theta;
 	}
 
 	@Override
 	public void setRelation(Kinematic orientation) {
-		x = orientation.getX();
-		y = orientation.getZ();
-		setAngle(orientation.getOrientation());
+		kin = orientation;
 	}
 
 	@Override
 	public void update() {
+		setAngle(kin.getOrientation());
 		parent.fill(0);
-		parent.ellipse(x,y,DIAMETER,DIAMETER);
-		parent.triangle(a.x,a.y,b.x,b.y,c.x,c.y);
+		parent.ellipse(kin.getX(),kin.getZ(),DIAMETER,DIAMETER);
+		parent.triangle(a.x,a.z,b.x,b.z,c.x,c.z);
 	}
 
 }

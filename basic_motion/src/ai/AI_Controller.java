@@ -17,10 +17,23 @@ public class AI_Controller {
 	private Movement movement;
 	
 	/**
+	 * time is the elapsed time in milliseconds since the last call to update.
+	 */
+	private double time;
+	
+	/**
+	 * timer is the current time in milliseconds.
+	 */
+	private long timer;
+	
+	/**
+	
+	/**
 	 * AI_Controller is the default constructor for the class.
 	 */
 	public AI_Controller() {
-		
+		time = 0;
+		timer = System.currentTimeMillis();
 	}
 	
 	/**
@@ -38,7 +51,10 @@ public class AI_Controller {
 	 * @param kin the Kinematic to be updated.
 	 * @param time the elapsed time in millisoconds.
 	 */
-	public void update(Kinematic kin, int time) {
+	public void update(Kinematic kin) {
+		long temp = System.currentTimeMillis();
+		time = (temp - timer)/7;
+		timer = temp;
 		movement.update(kin, time);
 	}
 	

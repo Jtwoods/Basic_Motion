@@ -1,5 +1,7 @@
 package skeleton;
 
+import java.util.ArrayList;
+
 import structure.Drawable;
 import structure.Graphix;
 
@@ -36,7 +38,7 @@ public abstract class GameControl {
 	 * objects that can be rendered by the graphics API.
 	 * @return
 	 */
-	public abstract Drawable[] getNextFrame();
+	public abstract ArrayList<Drawable> getNextFrame();
 
 	/**
 	 * getBackGround returns a Drawable background. 
