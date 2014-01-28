@@ -1,9 +1,6 @@
-package skeleton;
+package structure;
 
 import java.util.ArrayList;
-
-import structure.Drawable;
-import structure.Graphix;
 
 /**
  * GameControl provides an interface that allows

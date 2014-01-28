@@ -3,11 +3,11 @@ package basicmotion;
 import java.util.ArrayList;
 
 import ai.AI_Controller;
-import skeleton.GameControl;
-import skeleton.State;
 import structure.Drawable;
+import structure.GameControl;
 import structure.Graphix;
 import structure.Kinematic;
+import structure.State;
 import processing.core.PApplet;
 import structure.Movable;
 import viewer.BackGround;

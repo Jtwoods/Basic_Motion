@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import basicmotion.Basic_Motion_Control;
 import processing.core.PApplet;
-import skeleton.GameControl;
 import structure.Drawable;
+import structure.GameControl;
 import structure.Graphix;
 import structure.Character;
 

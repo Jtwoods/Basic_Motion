@@ -1,4 +1,4 @@
-package skeleton;
+package structure;
 
 /**
  * State provides an interface for state changes that are necessary at many
