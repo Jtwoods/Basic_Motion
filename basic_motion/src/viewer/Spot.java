@@ -7,7 +7,7 @@ import structure.Skin;
 /**
  * Spot is a very simple class of viewable object
  * implementing the Skin interface to provide
- * a circle with radius five.
+ * a circle with radius 2.5.
  * @author James Woods
  *
  */
@@ -16,7 +16,7 @@ public class Spot implements Skin{
 	/**
 	 * DIAMETER is the diameter used for the Spot.
 	 */
-	private static final int DIAMETER = 10; 
+	private static final int DIAMETER = 5; 
 	
 	/**
 	 * relation is the position of this Spot.
@@ -44,7 +44,7 @@ public class Spot implements Skin{
 
 	@Override
 	public void update() {
-		process.fill(0);
+		process.fill(211);
 		process.ellipse(relation.getX(), relation.getZ(), DIAMETER, DIAMETER);
 	}
 	
