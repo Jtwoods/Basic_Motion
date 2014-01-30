@@ -3,7 +3,6 @@ package basicmotion;
 import processing.core.PApplet;
 import structure.Character;
 import structure.Skin;
-import viewer.Tur;
 import viewer.Turtle;
 
 /**

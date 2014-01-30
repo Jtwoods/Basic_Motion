@@ -2,8 +2,6 @@ package basicmotion;
 
 import processing.core.PApplet;
 import structure.Character;
-import structure.Drawable;
-import structure.Kinematic;
 import structure.Skin;
 import viewer.Spot;
 

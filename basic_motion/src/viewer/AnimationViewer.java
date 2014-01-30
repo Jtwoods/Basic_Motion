@@ -7,7 +7,6 @@ import processing.core.PApplet;
 import structure.Drawable;
 import structure.GameControl;
 import structure.Graphix;
-import structure.Character;
 
 /**
  * AnimationViewer is the graphic front end for the 

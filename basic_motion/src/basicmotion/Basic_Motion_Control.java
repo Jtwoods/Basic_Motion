@@ -11,7 +11,6 @@ import structure.State;
 import processing.core.PApplet;
 import structure.Movable;
 import viewer.BackGround;
-import viewer.Spot;
 
 public class Basic_Motion_Control extends GameControl {
 
@@ -31,7 +30,7 @@ public class Basic_Motion_Control extends GameControl {
 	public Basic_Motion_Control(int maxZ, int maxX) {
 		sizeX = maxX;
 		sizeZ = maxZ;
-		startZ = maxZ - 70;
+		startZ = maxZ - 60;
 		startX = 70;
 	}
 
@@ -53,6 +52,7 @@ public class Basic_Motion_Control extends GameControl {
 
 		@Override
 		public void enter() {
+			frames = 0;
 			running = true;
 			pass = true;
 		}
