@@ -1,4 +1,4 @@
-package structure;
+package ai;
 
 /**
  * Kinematic provides Kinematic data relevant to a 2D environment and can be

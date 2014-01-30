@@ -1,6 +1,5 @@
 package ai;
 
-import structure.Kinematic;
 
 /**
  * AI_Controller provides a handle and template for 

@@ -1,6 +1,6 @@
 package basicmotion;
 
-import structure.Kinematic;
+import ai.Kinematic;
 import ai.Movement;
 
 public class Basic_Motion_Movement extends Movement{

@@ -1,5 +1,7 @@
 package structure;
 
+import ai.Kinematic;
+
 /**
  * Skin provides a handle for an
  * image or pixel animation allowing

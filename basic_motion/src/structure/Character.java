@@ -1,5 +1,7 @@
 package structure;
 
+import ai.Kinematic;
+
 
 /**
  * Character is a very basic implementation

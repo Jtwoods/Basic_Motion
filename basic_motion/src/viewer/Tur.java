@@ -1,8 +1,8 @@
 package viewer;
 
+import ai.Kinematic;
 import processing.core.PApplet;
 import processing.core.PImage;
-import structure.Kinematic;
 import structure.Skin;
 
 /**

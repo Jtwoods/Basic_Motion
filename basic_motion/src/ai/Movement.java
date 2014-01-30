@@ -1,6 +1,5 @@
 package ai;
 
-import structure.Kinematic;
 
 /**
  * Movement provides some very basic Kinematic motion

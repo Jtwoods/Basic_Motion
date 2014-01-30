@@ -3,10 +3,10 @@ package basicmotion;
 import java.util.ArrayList;
 
 import ai.AI_Controller;
+import ai.Kinematic;
 import structure.Drawable;
 import structure.GameControl;
 import structure.Graphix;
-import structure.Kinematic;
 import structure.State;
 import processing.core.PApplet;
 import structure.Movable;
@@ -69,8 +69,9 @@ public class Basic_Motion_Control extends GameControl {
 				pass = false;
 				// Update all the sprites.
 				for (int i = 0; i < sprites.size(); i++) {
-					if (sprites.get(i) instanceof Movable)
+					if (sprites.get(i) instanceof Movable) {
 						control.update(((Movable) sprites.get(i)).getPosition());
+					}
 				}
 			}
 

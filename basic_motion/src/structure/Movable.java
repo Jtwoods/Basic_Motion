@@ -1,5 +1,5 @@
 package structure;
-import structure.Kinematic;
+import ai.Kinematic;
 
 /**
  * Movable is a basic interface that 
